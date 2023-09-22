@@ -2,10 +2,22 @@ package lei.wang.ejemplo3_ciclo_actividad;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button btnAbrir;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("Estados", "7- Estoy en el método Restart");
+
+    }
 
     @Override
     protected void onDestroy() {
@@ -43,6 +55,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnAbrir = findViewById(R.id.btnActivity);
+
+        btnAbrir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         Log.e("Estados", "1- Estoy en el método Create");
+
+
     }
 }
